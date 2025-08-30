@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
+# Turbo Monorepo
 
-## Project info
+This is a monorepo built with [Turbo](https://turbo.build/).
 
-**URL**: https://lovable.dev/projects/dc773b31-3015-4e06-a90b-069df348b71e
+## Structure
 
-## How can I edit this code?
+```
+├── apps/
+│   └── web/          # Main React application
+├── packages/
+│   ├── ui/           # Shared UI components
+│   ├── config-eslint/    # Shared ESLint configuration
+│   └── config-typescript/   # Shared TypeScript configuration
+└── turbo.json        # Turbo configuration
+```
 
-There are several ways of editing your application.
+## Setup
 
-**Use Lovable**
+**Important**: You need to manually update the root `package.json` to add workspace configuration:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dc773b31-3015-4e06-a90b-069df348b71e) and start prompting.
+```json
+{
+  "name": "turbo-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "packageManager": "npm@10.0.0"
+}
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+## Development
 
-**Use your preferred IDE**
+Run the development server:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build all packages:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+Lint all packages:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run lint
+```
 
-## What technologies are used for this project?
+## Adding New Apps/Packages
+
+- Add new apps in `apps/` directory
+- Add new packages in `packages/` directory
+- Update the workspace pattern in `package.json` if needed
+
+## Commands
+
+- `turbo dev` - Start all apps in development mode
+- `turbo build` - Build all apps and packages
+- `turbo lint` - Lint all apps and packages
+- `turbo type-check` - Type check all apps and packages
+
+## Technologies
 
 This project is built with:
 
+- Turbo (monorepo management)
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/dc773b31-3015-4e06-a90b-069df348b71e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
