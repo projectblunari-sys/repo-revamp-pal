@@ -1,9 +1,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Folder, Globe, Package, Settings, GitBranch } from "lucide-react";
+import { Folder, Globe, Package, Settings, GitBranch, CheckCircle } from "lucide-react";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    console.log("✅ Root page loaded successfully");
+    console.log("📁 Monorepo structure:");
+    console.log("  └── apps/web (React + Vite + TypeScript)");
+    console.log("  └── packages/ui (Shared components)");
+    console.log("  └── packages/config-* (Shared configs)");
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto p-6">
@@ -120,10 +128,16 @@ const Index = () => {
         </Card>
 
         {/* Status */}
-        <div className="mt-8 text-center">
-          <Badge variant="secondary" className="px-4 py-2">
-            Monorepo Ready • Turbo Configured • All Apps Connected
-          </Badge>
+        <div className="mt-8 text-center space-y-4">
+          <div className="flex items-center justify-center gap-2">
+            <CheckCircle className="h-5 w-5 text-green-500" />
+            <Badge variant="secondary" className="px-4 py-2">
+              Root Page Debug: ✅ Working • Turbo Ready • Apps Connected
+            </Badge>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Check console for detailed monorepo structure info
+          </p>
         </div>
       </div>
     </div>
