@@ -1,8 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Folder, Globe, Package, Settings, GitBranch, CheckCircle } from "lucide-react";
+import { Folder, Globe, Package, Settings, GitBranch, CheckCircle, Play, Terminal, Plus, Rocket } from "lucide-react";
 import { useEffect } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const Index = () => {
   useEffect(() => {
@@ -12,6 +13,45 @@ const Index = () => {
     console.log("  └── packages/ui (Shared components)");
     console.log("  └── packages/config-* (Shared configs)");
   }, []);
+
+  const handlePreviewApp = () => {
+    toast({
+      title: "Web App Preview",
+      description: "You're already viewing the main web app! This dashboard is part of it.",
+    });
+  };
+
+  const handleBuildAll = () => {
+    toast({
+      title: "Build All Started",
+      description: "Building all apps and packages in the monorepo...",
+    });
+    console.log("🏗️ Running: turbo build");
+  };
+
+  const handleDevMode = () => {
+    toast({
+      title: "Dev Mode",
+      description: "Toggle dev mode in the top left of the Lovable editor.",
+    });
+    console.log("🔧 Development mode info displayed");
+  };
+
+  const handleAddPackage = () => {
+    toast({
+      title: "Add Package",
+      description: "Ready to add a new package to the monorepo!",
+    });
+    console.log("📦 Package creation flow initiated");
+  };
+
+  const handleDeploy = () => {
+    toast({
+      title: "Deploy",
+      description: "Use the Publish button in the top right to deploy your app.",
+    });
+    console.log("🚀 Deployment info displayed");
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto p-6">
@@ -51,7 +91,8 @@ const Index = () => {
                     <Badge variant="secondary">TypeScript</Badge>
                   </div>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={handlePreviewApp}>
+                  <Play className="mr-1 h-3 w-3" />
                   Preview
                 </Button>
               </div>
@@ -107,20 +148,20 @@ const Index = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col gap-2">
+              <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={handleBuildAll}>
                 <GitBranch className="h-5 w-5" />
                 <span className="text-sm">Build All</span>
               </Button>
-              <Button variant="outline" className="h-20 flex flex-col gap-2">
-                <Folder className="h-5 w-5" />
+              <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={handleDevMode}>
+                <Terminal className="h-5 w-5" />
                 <span className="text-sm">Dev Mode</span>
               </Button>
-              <Button variant="outline" className="h-20 flex flex-col gap-2">
-                <Package className="h-5 w-5" />
+              <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={handleAddPackage}>
+                <Plus className="h-5 w-5" />
                 <span className="text-sm">Add Package</span>
               </Button>
-              <Button variant="outline" className="h-20 flex flex-col gap-2">
-                <Globe className="h-5 w-5" />
+              <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={handleDeploy}>
+                <Rocket className="h-5 w-5" />
                 <span className="text-sm">Deploy</span>
               </Button>
             </div>
