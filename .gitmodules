@@ -1,0 +1,3 @@
+[submodule "apps/blunari-internal"]
+	path = apps/blunari-internal
+	url = https://github.com/projectblunari-sys/blunari-internal.git
